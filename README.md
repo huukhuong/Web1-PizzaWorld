@@ -10,6 +10,7 @@
 1. Clone đồ án về máy.
 2. Copy toàn bộ vào thư mục htdocs của xampp.
 3. Truy cập localhost và xem giao diện.
+4. Đường dẫn đến trang admin có dạng "localhost/Web1-PizzaWorld/admin-login.html"
 ### Ảnh chụp màn hình
 ![alt text](./img/screenshot/sc1.png)
 ![alt text](./img/screenshot/sc2.png)
