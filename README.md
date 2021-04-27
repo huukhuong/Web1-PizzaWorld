@@ -11,10 +11,10 @@
 2. Copy toàn bộ vào thư mục htdocs của xampp.
 3. Truy cập localhost và xem giao diện.
 ### Ảnh chụp màn hình
-![alt text]("./img/screenshot/sc1.png")
-![alt text]("./img/screenshot/sc2.png")
-![alt text]("./img/screenshot/sc3.png")
-![alt text]("./img/screenshot/sc4.png")
-![alt text]("./img/screenshot/sc5.png")
-![alt text]("./img/screenshot/sc6.png")
-![alt text]("./img/screenshot/sc7.png")
+![alt text](./img/screenshot/sc1.png)
+![alt text](./img/screenshot/sc2.png)
+![alt text](./img/screenshot/sc3.png)
+![alt text](./img/screenshot/sc4.png)
+![alt text](./img/screenshot/sc5.png)
+![alt text](./img/screenshot/sc6.png)
+![alt text](./img/screenshot/sc7.png)
