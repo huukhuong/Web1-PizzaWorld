@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - Quản trị Pizza World</title>
+    <link rel="shortcut icon" type="image/png" href="./img/favicon.ico" />
+    <link rel="stylesheet" href="./css/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="./css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/admin-login.css">
+</head>
+
+<style>
+    * {
+        color: #fff !important;
+    }
+
+    body {
+        background-image: url('./img/background-admin.jpg');
+        background-size: cover;
+    }
+</style>
+
+<body>
+    <div class="form-login">
+        <img src="./img/logo.png" alt="logo">
+        <h1 class="title">Đăng nhập quyền quản trị</h1>
+        <div class="form-group">
+            <i class="icon fas fa-user"></i>
+            <input type="text" class="form-control" id="user-name" placeholder="Tài khoản..." autofocus>
+        </div>
+        <div class="form-group">
+            <i class="icon fas fa-key"></i>
+            <input type="password" class="form-control" id="password" placeholder="••••••••••">
+        </div>
+        <span id="error">Sai thông tin đăng nhập! <a href="#" data-toggle="modal" data-target="#forgotpass">Quên mật
+                khẩu?</a></span>
+        <div class="form-group" style="border: none; margin-top: 0;">
+            <button onclick="dangNhapAdmin();" class="btn btn-success">Đăng nhập</button>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal fade" id="forgotpass" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Quên mật khẩu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Tài khoản mặc định: admin</p>
+                    <p>Mật khẩu mặc định: admin</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MODAL -->
+
+    <script src="./js/jquery-3.2.1.slim.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./css/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./js/admin-login.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza World - Trang chủ</title>
+    <link rel="shortcut icon" type="image/png" href="./img/favicon.ico" />
+    <link rel="stylesheet" href="./css/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="./css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/lichSuMua.css">
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-md sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="./user-index.html">
+                <img src="./img/logo.png" alt="Pizza World" class="navbar-brand-img">
+            </a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb"
+                aria-expanded="true">
+                <i class="fas fa-bars toggler-icon"></i>
+            </button>
+            <div id="navb" class="navbar-collapse collapse hide">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./user-index.html">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="modal" data-target="#gioiThieu" href="">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" style="cursor: pointer; color: #fff;">Thực đơn</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="javascript:pizza();">Pizza</a>
+                            <a class="dropdown-item" href="javascript:myy();">Mỳ Ý</a>
+                            <a class="dropdown-item" href="javascript:salad();">Salad</a>
+                            <a class="dropdown-item" href="javascript:giaikhat();">Nước uống</a>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav ml-auto nav-user">
+                    <li class="nav-user-item">
+                        <!-- Search form -->
+                        <div class="navbar-search">
+                            <input type="text" class="navbar-search-input" placeholder="Tìm kiếm" id="searchInput">
+                            <button class="navbar-search-btn" id="searchNow" onclick="timKiem();">
+                                <i class="fas fa-search navbar-search-icon"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="nav-user-item user-setting">
+                        <a href="./daMua.html" class="nav-link nav-user-link">Chào Nguyễn Hoàng Nam &nbsp;</a>
+                        <a href="index.html" class="nav-link nav-user-link">Thoát</a>
+                    </li>
+                    <!-- CART -->
+                    <span class="nav-cart dropdown" data-toggle="modal" data-target="#modalCart">
+                        <i class="fas fa-shopping-cart"></i>
+                    </span>
+                    <!-- END CART -->
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <!-- END NAVBAR -->
+
+    <!-- CONTAINER -->
+    <div class="container">
+        <h1 style="text-align: center; padding: 14px 0 10px 0;">Đơn hàng đã mua</h1>
+
+        <div class="product" style="text-align: center; overflow-x: auto;">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Mã đơn hàng</th>
+                        <th scope="col">Chi tiết</th>
+                        <th scope="col">Ngày mua</th>
+                        <th scope="col">Đơn vị vận chuyển</th>
+                        <th scope="col">Mã vận đơn</th>
+                        <th scope="col">Tổng tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>R45MD0</td>
+                        <td class="text-left">Pizza Hải Sản Nhiệt Đới (XL x1)<br>Mỳ Ý Cay Hải Sản (x1)</td>
+                        <td>21/11/2020</td>
+                        <td class="text-left">GiaoHangNhanh</td>
+                        <td>ML4DL5C1RE0N</td>
+                        <td style="color: red;font-size: 1.2rem;">268.000đ</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>RJM6LN</td>
+                        <td class="text-left">Tiết kiệm 50% Pizza (x1)</td>
+                        <td>04/12/2020</td>
+                        <td class="text-left">PizzaWorld</td>
+                        <td>FIP0O8Z4ERGR</td>
+                        <td style="color: red;font-size: 1.2rem;">297.000đ</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>QQXG9W</td>
+                        <td class="text-left">Mỳ Ý Thịt Bò Băm (x1)<br>Salad Trộn Ceasar (x1)</td>
+                        <td>08/12/2020</td>
+                        <td class="text-left">GiaoHangTietKiem</td>
+                        <td>P1BJ1J5WECP0</td>
+                        <td style="color: red;font-size: 1.2rem;">198.000đ</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" class="hide_cell"></th>
+                        <td class="hide_cell"></td>
+                        <td class="hide_cell"></td>
+                        <td class="hide_cell"></td>
+                        <td class="hide_cell"></td>
+                        <td style="font-size: 1.2rem; font-weight: bold;">Tổng cộng</td>
+                        <td style="color: red; font-size: 1.2rem; font-weight: bold;">763.000đ</td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="./user-index.html" class="btn btn-success my-4">Quay về Trang chủ</a>
+        </div>
+    </div>
+    <!-- END CONTAINER -->
+
+
+    <!-- FOOTER -->
+    <footer class="page-footer font-small footer-content">
+        <div class="container text-center text-md-left">
+            <div class="row">
+                <div class="footer-logo col-md-6 mt-md-0 mt-3">
+                    <a href="./user-index.html" style="text-decoration: none;">
+                        <img src="./img/logo.png" alt="" class="footer-img">
+                    </a>
+                    <div class="footer-address">
+                        Địa chỉ: 273 An Dương Vương, phường 3, quận 5, thành phố Hồ Chí Minh <br>
+                        Tổng đài hỗ trợ: 19001221 - Email: cskh@hotro.pizza.vn <br>
+                        Mã số doanh nghiệp: 0232733791 do Sở Kế hoạch & Đầu tư TP Hồ Chí Minh cấp lần đầu ngày
+                        02/10/2020
+                    </div>
+                </div>
+                <hr class="clearfix w-100 d-md-none pb-3">
+                <div class="col-md-2 mb-md-0 mb-3">
+                    <h3 class="text-uppercase">Giới thiệu</h3>
+                    <ul class="footer-list list-unstyled">
+                        <li>
+                            <a data-toggle="modal" data-target="#gioiThieu" href="">Về chúng tôi</a>
+                        </li>
+                </div>
+                <div class="col-md-2 mb-md-0 mb-3">
+                    <h3 class="text-uppercase">Liên hệ</h3>
+                    <ul class="footer-list list-unstyled">
+                        <li>
+                            <a href="https://www.facebook.com.vn">
+                                <i class="fab fa-facebook-square"></i>
+                                Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://instagram.com.vn">
+                                <i class="fab fa-instagram-square"></i>
+                                Instagram
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com.vn">
+                                <i class="fab fa-youtube"></i>
+                                Youtube
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-lincense footer-copyright text-center py-3">
+            Bản quyền © 2020 Pizza World. Đã đăng ký bản quyền. <br>
+            Hoạt động tốt nhất trên GoogleChrome.
+        </div>
+    </footer>
+    <!-- END FOOOTER -->
+
+    <!-- MODAL CART SHOPPING -->
+    <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Giỏ hàng</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!--Body-->
+                <div class="modal-body" id="modal-body-cart">
+                    <!-- ĐỔ JS -->
+                    <!-- product -->
+                    <div class="row product-row" id="no-product">
+                        <img src="./img/no-product-cart.jpg" alt="khong co san pham" class="col-12">
+                    </div>
+                    <!-- end product -->
+                </div>
+                <div id="cart-total" class="total ml-auto" style="display: none;">
+                    <h3 style="color: red;">
+                        Tổng cộng:&nbsp;&nbsp;
+                    </h3>
+                    <h3 id="number-total" style="color: red; padding-right: 12px;">
+                        0
+                        <!-- Tính bằng JS -->
+                    </h3>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Đóng</button>
+                    <a class="btn btn-success" id="btn-success" style="display: none;" data-toggle="modal"
+                        data-target="#giaoHang" href="" data-dismiss="modal" aria-label="Close">Mua ngay</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MODAL CART SHOPPING -->
+
+
+    <!-- MODAL ORDER -->
+    <div class="modal fade" id="giaoHang" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Đặt hàng</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-2">
+                        <i class="fas fa-phone prefix grey-text"></i>
+                        <label>Nhập số điện thoại nhận hàng</label>
+                        <input type="number" id="Order-phone" class="form-control ">
+                        <span class="errorForm" id="errorPhone">SĐT không hợp lệ!</span>
+                    </div>
+                    <input type="radio" id="currentAddress" name="addressSelect" checked="checked"
+                        value="currentAddress">
+                    Dùng địa chỉ của tài khoản <br>
+                    <input type="radio" id="newAddress" name="addressSelect" value="newAddress"
+                        onclick="hienFormDiaChi();">
+                    Nhập địa chỉ mới
+                    <div class="md-form mb-4" id="form-address">
+                        <i class="fas fa-map-marker-alt prefix grey-text"></i>
+                        <label>Địa chỉ nhận hàng</label>
+                        <input type="text" id="Order-Address" class="form-control"
+                            placeholder="Để trống nếu dùng địa chỉ của tài khoản">
+                        <span class="errorForm" id="errorAddress">Không được để trống trường này</span>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button class="modal-link" onclick="datHang();">Tiến hành đặt hàng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MODAL ORDER -->
+
+    <!-- MODAL INTRODUCE -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="gioiThieu">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Giới thiệu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Pizza World là chuỗi nhà hàng pizza được yêu thích và lớn nhất thế giới, trực thuộc tập đoàn SGU!
+                        (www.SGU.com). Pizza World tự hào hiện diện tại 100 quốc gia trên khắp thế giới từ tháng 10 năm
+                        2020.</p>
+                    <p>Sự kiện này đánh dấu một cột mốc ý nghĩa để minh chứng cho sự cam kết của nhãn hàng về chất lượng
+                        pizza hảo
+                        hạng và phong cách phục vụ chuyên nghiệp.</p>
+                    <p>Pizza World có mặt tại Việt Nam từ năm 2020 với 100% vốn SGU; và hiện đã phát triển hơn 50 nhà
+                        hàng với
+                        trên 3.000 nhân viên.</p>
+                    <p>Pizza World Việt Nam - nơi bạn được thỏa sức thể hiện chính mình với cơ hội hấp dẫn để phát triển
+                        cá nhân lẫn
+                        nghề nghiệp toàn diện!</p>
+                    <p>Chúng tôi tân tâm mang đến một môi trường làm việc thân thiện và chuyên nghiệp cho từng nhân
+                        viên, nỗ lực
+                        hoàn thiện giá trị “Cùng nhau hướng đến một Pizza World TUYỆT VỜI!”</p>
+                    <div style="display: flex; justify-content: center;">
+                        <img src="./img/mapPizza.png" alt="Bản đồ chi nhánh" style="width:70%;">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MODAL INTRODUCE -->
+
+    <!-- MODAL INFO PRODUCT -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="chiTiet">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Chi tiết sản phẩm</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="detail-main">
+                        <div class="detail-image">
+                            <img src="./img/combo0.png" alt="Hinh-anh" id="detail-img" style="width: 100%;">
+                        </div>
+                        <div class="detail-content">
+                            <h3 id="detail-title">Tên món</h3>
+                            <p id="detail-description">Mô tả</p>
+                            <span id="detail-quantity">
+                                <p>Số lượng:</p>
+                                <input type="number" class="detail-input" id="quantity" value="1" min="1" max="10">
+                                <p>Size:</p>
+                                <select class="detail-input" onchange="tinhTien();" id="sizePizza">
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                </select>
+                            </span>
+                            <div class="detail-price">
+                                <h4>Tổng cộng:</h4>
+                                <h4 id="price-total">.000đ</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="themVaoGio();">Thêm vào
+                        giỏ hàng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MODAL INFO PRODUCT -->
+
+    <script src="./js/jquery-3.2.1.slim.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./css/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./js/product-list.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza World - Trang chủ</title>
+    <link rel="shortcut icon" type="image/png" href="./img/favicon.ico" />
+    <link rel="stylesheet" href="./css/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="./css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-md sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="./user-index.html">
+                <img src="./img/logo.png" alt="Pizza World" class="navbar-brand-img">
+            </a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb"
+                aria-expanded="true">
+                <i class="fas fa-bars toggler-icon"></i>
+            </button>
+            <div id="navb" class="navbar-collapse collapse hide">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./user-index.html">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="modal" data-target="#gioiThieu" href="">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" style="cursor: pointer; color: #fff;">Thực đơn</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="javascript:pizza();">Pizza</a>
+                            <a class="dropdown-item" href="javascript:myy();">Mỳ Ý</a>
+                            <a class="dropdown-item" href="javascript:salad();">Salad</a>
+                            <a class="dropdown-item" href="javascript:giaikhat();">Nước uống</a>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav ml-auto nav-user">
+                    <li class="nav-user-item">
+                        <!-- Search form -->
+                        <div class="navbar-search">
+                            <input type="text" class="navbar-search-input" placeholder="Tìm kiếm" id="searchInput">
+                            <button class="navbar-search-btn" id="searchNow" onclick="timKiem();">
+                                <i class="fas fa-search navbar-search-icon"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="nav-user-item user-setting">
+                        <a href="./daMua.html" class="nav-link nav-user-link">Chào Nguyễn Hoàng Nam &nbsp;</a>
+                        <a href="index.html" class="nav-link nav-user-link">Thoát</a>
+                    </li>
+                    <!-- CART -->
+                    <span class="nav-cart dropdown" data-toggle="modal" data-target="#modalCart">
+                        <i class="fas fa-shopping-cart"></i>
+                    </span>
+                    <!-- END CART -->
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <!-- END NAVBAR -->
+
+    <!-- CONTAINER -->
+    <div class="container">
+        <!-- CAROUSEL -->
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000"
+            data-pause="click">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="./img/banner0.jpeg" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="./img/banner1.jpeg" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="./img/banner2.jpeg" alt="Third slide">
+                </div>
+            </div>
+        </div>
+        <!-- END CAROUSEL -->
+
+        <!--    ============================
+                        SEARCH CONTENT
+                ============================ -->
+        <div class="search-content" id="search-content">
+            <!-- FILTER -->
+            <div class="row search-filter">
+                <div class="row col-md-10">
+                    <div class="col-md-4">
+                        <span class="search-filter-label">Loại:</span>
+                        <select class="form-search-filter" name="select-food" id="select-food">
+                            <option value="all">Tất cả</option>
+                            <option value="combo">Combo</option>
+                            <option value="pizza">Pizza</option>
+                            <option value="myy">Mỳ Ý</option>
+                            <option value="salad">Salad</option>
+                            <option value="giaikhat">Nước uống</option>
+                        </select>
+                    </div>
+
+                    <div class="row col-md-4">
+                        <span class="search-filter-label col-2">Giá:</span>
+                        <input type="number" id="filter-min-price" min=0 class="form-search-filter col-5"
+                            placeholder="Từ...">
+                        <input type="number" id="filter-max-price" min=0 class="form-search-filter col-5"
+                            placeholder="Đến...">
+                    </div>
+
+                    <div class="col-md-4">
+                        <span class="search-filter-label col-2">Sắp xếp:</span>
+                        <select class="form-search-filter" name="select-sort" id="select-sort">
+                            <option value="LowToHeight">Giá: Thấp tới cao</option>
+                            <option value="HeightToLow">Giá: Cao tới thấp</option>
+                        </select>
+
+                    </div>
+
+                    <button class="btn btn-success" id="btn-search-filter" onclick="timKiemNangCao();">
+                        <i class="fas fa-search">
+                        </i>
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- RESUL SEARCH -->
+            <!-- RESUL SEARCH -->
+            <div id="search-result">
+                <div class="row">
+                    <div class="col-md-6">
+                        Số kết quả phù hợp:&nbsp;
+                        <span id="number-of-result">0</span>
+                    </div>
+                </div>
+                <!-- PAGE BREAK -->
+                <div class="col-12" class="search-break-page">
+                    <ul class="page-list">
+                        <li class="page-item">
+                            <button class="btn btn-page" onclick="search1();"><i
+                                    class="fas fa-chevron-left"></i></button>
+                        </li>
+                        <li class="page-item">
+                            <button class="btn btn-page select-page" id="btn-search-page1-1"
+                                onclick="search1();">1</button>
+                        </li>
+                        <li class="page-item">
+                            <button class="btn btn-page" id="btn-search-page2-1" onclick="search2();">2</button>
+                        </li>
+                        <li class="page-item">
+                            <button class="btn btn-page" onclick="search2();"><i
+                                    class="fas fa-chevron-right"></i></button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row product-list" id="result-search1">
+                    <!-- Đổ JS -->
+                </div>
+                <div class="row product-list" id="result-search2">
+                    <!-- Đổ JS -->
+                </div>
+                <!-- PAGE BREAK -->
+                <div class="col-12" class="search-break-page">
+                    <ul class="page-list">
+                        <li class="page-item">
+                            <button class="btn btn-page" onclick="search1();"><i
+                                    class="fas fa-chevron-left"></i></button>
+                        </li>
+                        <li class="page-item">
+                            <button class="btn btn-page select-page" id="btn-search-page1"
+                                onclick="search1();">1</button>
+                        </li>
+                        <li class="page-item">
+                            <button class="btn btn-page" id="btn-search-page2" onclick="search2();">2</button>
+                        </li>
+                        <li class="page-item">
+                            <button class="btn btn-page" onclick="search2();"><i
+                                    class="fas fa-chevron-right"></i></button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--    ============================
+                                SEARCH CONTENT
+                        ============================ -->
+
+        <!-- COMBO -->
+        <div id="combo">
+            <h1 class="title-product-group">COMBO/KHUYẾN MÃI</h1>
+            <div class="row product-list">
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/combo0.png">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Ăn ngon sương sương</h5>
+                            <p class="card-text">Combo ưu đãi 25%, phù hợp cho 2-3 người</p>
+                            <span class="cart-price">
+                                <span class="card-old-price">350.000đ</span>
+                                <span class="card-current-price">299.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('Ăn ngon sương sương','Combo ưu đãi 25%, phù hợp cho 2-3 người','299','combo0.png');"
+                                class="btn btn-success btn-add-to-cart">Thêm vào
+                                giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/combo1.png">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Tiết kiệm 50% Pizza</h5>
+                            <p class="card-text">Tiết kiệm 50% Pizza thứ 2 mua kèm nước</p>
+                            <span class="cart-price">
+                                <span class="card-old-price">320.000đ</span>
+                                <span class="card-current-price">297.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('Tiết kiệm 50% Pizza','Tiết kiệm 50% Pizza thứ 2 mua kèm nước','297','combo1.png');"
+                                class="btn btn-success btn-add-to-cart">Thêm vào
+                                giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/combo2.png">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Ăn Ngon Chanh Sả</h5>
+                            <p class="card-text">Combo ưu đãi 20%, phù hợp cho 4-6 người</p>
+                            <span class="cart-price">
+                                <span class="card-old-price">650.000đ</span>
+                                <span class="card-current-price">599.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('Ăn Ngon Chanh Sả','Combo ưu đãi 20%, phù hợp cho 4-6 người','599','combo2.png');"
+                                class="btn btn-success btn-add-to-cart">Thêm vào
+                                giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/combo3.png">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Mua 3 Tặng 1</h5>
+                            <p class="card-text">Mua 3 Pizza size L, tặng 1 Pizza cùng cỡ</p>
+                            <span class="cart-price">
+                                <span class="card-old-price">300.000đ</span>
+                                <span class="card-current-price">259.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('Mua 3 Tặng 1','Mua 3 Pizza size L, tặng 1 Pizza cùng cỡ','259','combo3.png');"
+                                class="btn btn-success btn-add-to-cart">Thêm vào
+                                giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END COMBO -->
+
+        <!-- PIZZA -->
+        <div id="pizza">
+            <h1 class="title-product-group" id="pizza">PIZZA</h1>
+            <div class="row product-list" id="pizza-page-1">
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/pizza0.png">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Pizza Hải Sản Pesto Xanh</h5>
+                            <p class="card-text">Tôm, cua, mực, bông cải xanh và sốt Pesto Xanh</p>
+                            <span class="cart-price">
+                                <span class="card-old-price">200.000đ</span>
+                                <span class="card-current-price">169.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('Pizza Hải Sản Pesto Xanh','Tôm, cua, mực, bông cải xanh và sốt Pesto Xanh','169','pizza0.png');"
+                                class="btn btn-success btn-add-to-cart">Thêm vào
+                                giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/pizza1.png">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Pizza Hải Sản Nhiệt Đới</h5>
+                            <p class="card-text">Tôm, nghêu, mực,... với sốt Thousand Island</p>
+                            <span class="cart-price">
+                                <span class="card-old-price">170.000đ</span>
+                                <span class="card-current-price">129.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('Pizza Hải Sản Nhiệt Đới','Tôm, nghêu, mực,... với sốt Thousand Island','129','pizza1.png');"
+                                class="btn btn-success btn-add-to-cart">Thêm vào
+                                giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/pizza2.png">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Pizza Hải Sản Cocktail (Mới)</h5>
+                            <p class="card-text">Sốt Thousand Island và vô vàn topping</p>
+                            <span class="cart-price">
+                                <span class="card-old-price">250.000đ</span>
+                                <span class="card-current-price">199.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('Pizza Hải Sản Cocktail (Mới)','Sốt Thousand Island và vô vàn topping','119','pizza2.png');"
+                                class="btn btn-success btn-add-to-cart">Thêm vào
+                                giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/pizza3.png">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Pizza Tôm Cocktail (Mới)</h5>
+                            <p class="card-text">Tôm nấm, dứa, cà chua và sốt Thousand Island</p>
+                            <span class="cart-price">
+                                <span class="card-old-price">200.000đ</span>
+                                <span class="card-current-price">159.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('Pizza Tôm Cocktail (Mới)','Tôm nấm, dứa, cà chua và sốt Thousand Island','159','pizza3.png');"
+                                class="btn btn-success btn-add-to-cart">Thêm vào
+                                giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row product-list" id="pizza-page-2" style="display: none;">
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/pizza4.png">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Pizza Aloha</h5>
+                            <p class="card-text">Thịt nguội, xúc xích tiêu cay và dứa hòa quyện với sốt Thousand Island
+                            </p>
+                            <span class="cart-price">
+                                <span class="card-old-price">130.000đ</span>
+                                <span class="card-current-price">119.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('Pizza Aloha','Thịt nguội, xúc xích tiêu cay và dứa hòa quyện với sốt Thousand Island','119','pizza4.png');"
+                                class="btn btn-success btn-add-to-cart">Thêm vào
+                                giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/pizza5.png">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Pizza Thịt Xông Khói</h5>
+                            <p class="card-text">Thịt giăm bông, thịt xông khói và hai loại rau của ớt xanh, cà chua</p>
+                            <span class="cart-price">
+                                <span class="card-old-price">150.000đ</span>
+                                <span class="card-current-price">130.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('Pizza Thịt Xông Khói','Thịt giăm bông, thịt xông khói và hai loại rau của ớt xanh, cà chua','130','pizza5.png');"
+                                class="btn btn-success btn-add-to-cart">Thêm vào
+                                giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/pizza6.png">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Pizza Thịt Nguội</h5>
+                            <p class="card-text">Sự kết hợp giữa thịt nguội và bắp ngọt phong cách Canada</p>
+                            <span class="cart-price">
+                                <span class="card-old-price">190.000đ</span>
+                                <span class="card-current-price">169.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('Pizza Thịt Nguội','Sự kết hợp giữa thịt nguội và bắp ngọt phong cách Canada','169','pizza6.png');"
+                                class="btn btn-success btn-add-to-cart">
+                                Thêm vào giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/pizza7.png">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Pizza Gà Nướng 3 Vị</h5>
+                            <p class="card-text">Gà nướng, gà bơ tỏi và gà ướp sốt nấm kết hợp với rau xanh</p>
+                            <span class="cart-price">
+                                <span class="card-old-price">170.000đ</span>
+                                <span class="card-current-price">129.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('Pizza Gà Nướng 3 Vị','Gà nướng, gà bơ tỏi và gà ướp sốt nấm kết hợp với rau xanh','129','pizza7.png');"
+                                class="btn btn-success btn-add-to-cart">
+                                Thêm vào giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- PAGE BREAK -->
+            <div class="col-12">
+                <ul class="page-list">
+                    <li class="page-item">
+                        <button class="btn btn-page" onclick="search1();"><i class="fas fa-chevron-left"></i></button>
+                    </li>
+                    <li class="page-item">
+                        <button class="btn btn-page select-page" id="btn-page1" onclick="search1();">1</button>
+                    </li>
+                    <li class="page-item">
+                        <button class="btn btn-page" id="btn-page2" onclick="search2();">2</button>
+                    </li>
+                    <li class="page-item">
+                        <button class="btn btn-page" onclick="search2();"><i class="fas fa-chevron-right"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- END PIZZA -->
+
+        <!-- MY Y -->
+        <div id="myy">
+            <h1 class="title-product-group" id="myy">MỲ Ý</h1>
+            <div class="row product-list">
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/myy0.png">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Mỳ Ý Cay Hải Sản</h5>
+                            <p class="card-text">Mỳ Ý rán với các loại hải sản tươi ngon cùng ớt và tỏi</p>
+                            <span class="cart-price">
+                                <span class="card-old-price">150.000đ</span>
+                                <span class="card-current-price">129.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('Mỳ Ý Cay Hải Sản','Mỳ Ý rán với các loại hải sản tươi ngon cùng ớt và tỏi','129','myy0.png');"
+                                class="btn btn-success btn-add-to-cart">Thêm vào
+                                giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/myy1.png">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Mỳ Ý Tôm Sốt Cà Chua</h5>
+                            <p class="card-text">Sự tươi ngon của tôm kết hợp với sốt kem cà chua</p>
+                            <span class="cart-price">
+                                <span class="card-old-price">150.000đ</span>
+                                <span class="card-current-price">129.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('Mỳ Ý Tôm Sốt Cà Chua','Sự tươi ngon của tôm kết hợp với sốt kem cà chua','129','myy1.png');"
+                                class="btn btn-success btn-add-to-cart">Thêm vào
+                                giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/myy2.png">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Mỳ Ý Thịt Bò Băm</h5>
+                            <p class="card-text">Sốt thịt bò bằm đặc trưng kết hợp cùng mỳ Ý tạo nên hương vị đặc trưng
+                            </p>
+                            <span class="cart-price">
+                                <span class="card-old-price">150.000đ</span>
+                                <span class="card-current-price">129.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('Mỳ Ý Thịt Bò Băm','Sốt thịt bò bằm đặc trưng kết hợp cùng mỳ Ý tạo nên hương vị đặc trưng','129','myy2.png');"
+                                class="btn btn-success btn-add-to-cart">Thêm vào
+                                giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/myy3.png">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Mỳ Ý Cay Xúc Xích</h5>
+                            <p class="card-text">Mỳ Ý rán với xúc xích cay, thảo mộc, ngò gai, cùng nước sốt đậm đà</p>
+                            <span class="cart-price">
+                                <span class="card-old-price">130.000đ</span>
+                                <span class="card-current-price">109.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('Mỳ Ý Cay Xúc Xích','Mỳ Ý rán với xúc xích cay, thảo mộc, ngò gai, cùng nước sốt đậm đà','109','myy3.png');"
+                                class="btn btn-success btn-add-to-cart">Thêm vào
+                                giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END MY Y -->
+
+        <!-- SALAD -->
+        <div id="salad">
+            <h1 class="title-product-group" id="salad">SALAD</h1>
+            <div class="row product-list">
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/salad0.png">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Salad Đặc Sắc</h5>
+                            <p class="card-text">Rau củ và sốt Salad đặc biệt</p>
+                            <span class="cart-price">
+                                <span class="card-old-price">99.000đ</span>
+                                <span class="card-current-price">69.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('Salad Đặc Sắc','Rau củ và sốt Salad đặc biệt','69','salad0.png');"
+                                class="btn btn-success btn-add-to-cart">Thêm vào
+                                giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/salad1.png">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Salad Trộn Ceasar</h5>
+                            <p class="card-text">Rau tươi trộn với sốt Caesar</p>
+                            <span class="cart-price">
+                                <span class="card-old-price">90.000đ</span>
+                                <span class="card-current-price">69.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('Salad Trộn Ceasar','Rau tươi trộn với sốt Caesar','69','salad1.png');"
+                                class="btn btn-success btn-add-to-cart">Thêm vào
+                                giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/salad2.png">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Salad Trộn Dầu Giấm</h5>
+                            <p class="card-text">Rau với sốt dầu giấm</p>
+                            <span class="cart-price">
+                                <span class="card-old-price">70.000đ</span>
+                                <span class="card-current-price">59.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('Salad Trộn Dầu Giấm','Rau với sốt dầu giấm','59','salad2.png');"
+                                class="btn btn-success btn-add-to-cart">Thêm vào
+                                giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END SALAD -->
+
+        <!-- DRINK -->
+        <div id="giaikhat">
+            <h1 class="title-product-group" id="giaikhat">Nước uống</h1>
+            <div class="row product-list">
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/douong0.jpeg">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Pepsi Lon</h5>
+                            <p class="card-text">Pepsi Lon</p>
+                            <span class="cart-price">
+                                <span class="card-old-price">29.000đ</span>
+                                <span class="card-current-price">29.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('Pepsi Lon','Pepsi Lon','29','douong0.jpeg');"
+                                class="btn btn-success btn-add-to-cart">Thêm vào
+                                giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/douong1.jpeg">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Pepsi Chai 1,5l</h5>
+                            <p class="card-text">Pepsi chai 1,5l</p>
+                            <span class="cart-price">
+                                <span class="card-old-price">39.000đ</span>
+                                <span class="card-current-price">39.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('Pepsi Chai 1,5l','Pepsi Chai 1,5l','39','douong1.jpeg');"
+                                class="btn btn-success btn-add-to-cart">Thêm vào
+                                giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/douong2.jpeg">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">7 Up Lon</h5>
+                            <p class="card-text">7 Up Lon</p>
+                            <span class="cart-price">
+                                <span class="card-old-price">29.000đ</span>
+                                <span class="card-current-price">29.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('7 Up Lon','7 Up Lon','29','douong2.jpeg');"
+                                class="btn btn-success btn-add-to-cart">Thêm vào
+                                giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 col-12">
+                    <div class="card">
+                        <div class="inner-img">
+                            <img class="card-img-top" src="./img/douong3.jpeg">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">7 Up Chai 1,5l</h5>
+                            <p class="card-text">7 Up Chai 1,5l</p>
+                            <span class="cart-price">
+                                <span class="card-old-price">39.000đ</span>
+                                <span class="card-current-price">39.000đ</span>
+                            </span>
+                            <button type="button" data-toggle="modal" data-target="#chiTiet"
+                                onclick="chiTiet('7 Up Chai 1,5l','7 Up Chai 1,5l','39','douong3.jpeg');"
+                                class="btn btn-success btn-add-to-cart">Thêm vào giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- END DRINK -->
+    </div>
+    <!-- END CONTAINER -->
+
+
+    <!-- FOOTER -->
+    <footer class="page-footer font-small footer-content">
+        <div class="container text-center text-md-left">
+            <div class="row">
+                <div class="footer-logo col-md-6 mt-md-0 mt-3">
+                    <a href="./user-index.html" style="text-decoration: none;">
+                        <img src="./img/logo.png" alt="" class="footer-img">
+                    </a>
+                    <div class="footer-address">
+                        Địa chỉ: 273 An Dương Vương, phường 3, quận 5, thành phố Hồ Chí Minh <br>
+                        Tổng đài hỗ trợ: 19001221 - Email: cskh@hotro.pizza.vn <br>
+                        Mã số doanh nghiệp: 0232733791 do Sở Kế hoạch & Đầu tư TP Hồ Chí Minh cấp lần đầu ngày
+                        02/10/2020
+                    </div>
+                </div>
+                <hr class="clearfix w-100 d-md-none pb-3">
+                <div class="col-md-2 mb-md-0 mb-3">
+                    <h3 class="text-uppercase">Giới thiệu</h3>
+                    <ul class="footer-list list-unstyled">
+                        <li>
+                            <a data-toggle="modal" data-target="#gioiThieu" href="">Về chúng tôi</a>
+                        </li>
+                </div>
+                <div class="col-md-2 mb-md-0 mb-3">
+                    <h3 class="text-uppercase">Liên hệ</h3>
+                    <ul class="footer-list list-unstyled">
+                        <li>
+                            <a href="https://www.facebook.com.vn">
+                                <i class="fab fa-facebook-square"></i>
+                                Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://instagram.com.vn">
+                                <i class="fab fa-instagram-square"></i>
+                                Instagram
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com.vn">
+                                <i class="fab fa-youtube"></i>
+                                Youtube
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-lincense footer-copyright text-center py-3">
+            Bản quyền © 2020 Pizza World. Đã đăng ký bản quyền. <br>
+            Hoạt động tốt nhất trên GoogleChrome.
+        </div>
+    </footer>
+    <!-- END FOOOTER -->
+
+    <!-- MODAL CART SHOPPING -->
+    <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Giỏ hàng</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!--Body-->
+                <div class="modal-body" id="modal-body-cart">
+                    <!-- ĐỔ JS -->
+                    <!-- product -->
+                    <div class="row product-row" id="no-product">
+                        <img src="./img/no-product-cart.jpg" alt="khong co san pham" class="col-12">
+                    </div>
+                    <!-- end product -->
+                </div>
+                <div id="cart-total" class="total ml-auto" style="display: none;">
+                    <h3 style="color: red;">
+                        Tổng cộng:&nbsp;&nbsp;
+                    </h3>
+                    <h3 id="number-total" style="color: red; padding-right: 12px;">
+                        0
+                        <!-- Tính bằng JS -->
+                    </h3>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Đóng</button>
+                    <a class="btn btn-success" id="btn-success" style="display: none;" data-toggle="modal" data-target="#giaoHang" href="" data-dismiss="modal"
+                        aria-label="Close">Mua ngay</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MODAL CART SHOPPING -->
+
+
+    <!-- MODAL ORDER -->
+    <div class="modal fade" id="giaoHang" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Đặt hàng</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-2">
+                        <i class="fas fa-phone prefix grey-text"></i>
+                        <label>Nhập số điện thoại nhận hàng</label>
+                        <input type="number" id="Order-phone" class="form-control ">
+                        <span class="errorForm" id="errorPhone">SĐT không hợp lệ!</span>
+                    </div>
+                    <input type="radio" id="currentAddress" name="addressSelect" checked="checked"
+                        value="currentAddress">
+                    Dùng địa chỉ của tài khoản <br>
+                    <input type="radio" id="newAddress" name="addressSelect" value="newAddress"
+                        onclick="hienFormDiaChi();">
+                    Nhập địa chỉ mới
+                    <div class="md-form mb-4" id="form-address">
+                        <i class="fas fa-map-marker-alt prefix grey-text"></i>
+                        <label>Địa chỉ nhận hàng</label>
+                        <input type="text" id="Order-Address" class="form-control"
+                            placeholder="Để trống nếu dùng địa chỉ của tài khoản">
+                        <span class="errorForm" id="errorAddress">Không được để trống trường này</span>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button class="modal-link" onclick="datHang();">Tiến hành đặt hàng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MODAL ORDER -->
+
+    <!-- MODAL INTRODUCE -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="gioiThieu">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Giới thiệu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Pizza World là chuỗi nhà hàng pizza được yêu thích và lớn nhất thế giới, trực thuộc tập đoàn SGU!
+                        (www.SGU.com). Pizza World tự hào hiện diện tại 100 quốc gia trên khắp thế giới từ tháng 10 năm
+                        2020.</p>
+                    <p>Sự kiện này đánh dấu một cột mốc ý nghĩa để minh chứng cho sự cam kết của nhãn hàng về chất lượng
+                        pizza hảo
+                        hạng và phong cách phục vụ chuyên nghiệp.</p>
+                    <p>Pizza World có mặt tại Việt Nam từ năm 2020 với 100% vốn SGU; và hiện đã phát triển hơn 50 nhà
+                        hàng với
+                        trên 3.000 nhân viên.</p>
+                    <p>Pizza World Việt Nam - nơi bạn được thỏa sức thể hiện chính mình với cơ hội hấp dẫn để phát triển
+                        cá nhân lẫn
+                        nghề nghiệp toàn diện!</p>
+                    <p>Chúng tôi tân tâm mang đến một môi trường làm việc thân thiện và chuyên nghiệp cho từng nhân
+                        viên, nỗ lực
+                        hoàn thiện giá trị “Cùng nhau hướng đến một Pizza World TUYỆT VỜI!”</p>
+                    <div style="display: flex; justify-content: center;">
+                        <img src="./img/mapPizza.png" alt="Bản đồ chi nhánh" style="width:70%;">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MODAL INTRODUCE -->
+
+    <!-- MODAL INFO PRODUCT -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="chiTiet">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Chi tiết sản phẩm</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="detail-main">
+                        <div class="detail-image">
+                            <img src="./img/combo0.png" alt="Hinh-anh" id="detail-img" style="width: 100%;">
+                        </div>
+                        <div class="detail-content">
+                            <h3 id="detail-title">Tên món</h3>
+                            <p id="detail-description">Mô tả</p>
+                            <span id="detail-quantity">
+                                <p>Số lượng:</p>
+                                <input type="number" class="detail-input" id="quantity" value="1" min="1" max="10">
+                                <p>Size:</p>
+                                <select class="detail-input" onchange="tinhTien();" id="sizePizza">
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                </select>
+                            </span>
+                            <div class="detail-price">
+                                <h4>Tổng cộng:</h4>
+                                <h4 id="price-total">.000đ</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal"
+                        onclick="themVaoGio();">Thêm vào giỏ hàng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MODAL INFO PRODUCT -->
+
+    <script src="./js/jquery-3.2.1.slim.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./css/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./js/product-list.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
